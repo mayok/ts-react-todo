@@ -1,18 +1,27 @@
-// import * as React from "react";
-// import Todo from "./Todo";
+import * as React from "react";
+import Todo from "./Todo";
 
-// export default class Todos extends React.Component {
-//   constructor(props: any) {
-//     super(props);
-//     this.state = {
-//       id: 0,
-//       text: ""
-//     };
-//   }
+interface Todo {
+  id: number;
+  text: string;
+}
 
-//   render() {
-//     {
-//       this.state.todos.map(todo => <Todo key={todo.id} todo={todo.text} />);
-//     }
-//   }
-// }
+interface Props {
+  todos: Todo[];
+}
+
+export default class Todos extends React.Component<Props, {}> {
+  constructor(props: any) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <div>
+        {this.props.todos.map((todo: Todo) => (
+          <Todo key={todo.id} todo={todo.text} />
+        ))}
+      </div>
+    );
+  }
+}
