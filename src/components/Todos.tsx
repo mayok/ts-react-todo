@@ -1,13 +1,15 @@
 import * as React from "react";
 import Todo from "./Todo";
 
-interface Todo {
+interface Item {
   id: number;
   text: string;
+  completed: boolean;
 }
 
 interface Props {
-  todos: Todo[];
+  todos: Item[];
+  toggleStatus: (e: Item) => void;
 }
 
 export default class Todos extends React.Component<Props, {}> {
@@ -18,8 +20,14 @@ export default class Todos extends React.Component<Props, {}> {
   render() {
     return (
       <div>
-        {this.props.todos.map((todo: Todo) => (
-          <Todo key={todo.id} todo={todo.text} />
+        {this.props.todos.map((todo: Item) => (
+          <Todo
+            key={todo.id}
+            id={todo.id}
+            text={todo.text}
+            status={todo.completed}
+            toggleStatus={this.props.toggleStatus}
+          />
         ))}
       </div>
     );

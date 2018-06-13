@@ -1,12 +1,13 @@
 import * as React from "react";
 
-interface Todo {
+interface Item {
   id: number;
   text: string;
+  completed: boolean;
 }
 
 interface Props {
-  handleClick: (e: Todo) => void;
+  addTodo: (e: Item) => void;
 }
 
 interface State {
@@ -23,14 +24,15 @@ class TodoForm extends React.Component<Props, State> {
       input: ""
     };
 
-    this.handleClick = this.handleClick.bind(this);
+    this.addTodo = this.addTodo.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleClick() {
-    this.props.handleClick({
+  addTodo() {
+    this.props.addTodo({
       id: this.state.count,
-      text: this.state.input
+      text: this.state.input,
+      completed: false
     });
 
     this.setState({
@@ -54,7 +56,7 @@ class TodoForm extends React.Component<Props, State> {
           value={this.state.input}
           onChange={this.handleChange}
         />
-        <button type="button" onClick={this.handleClick}>
+        <button type="button" onClick={this.addTodo}>
           Add
         </button>
       </div>
