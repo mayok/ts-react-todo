@@ -1,14 +1,11 @@
+import { Item } from "./Item";
+
 import * as React from "react";
 import Todos from "./Todos";
 import TodoForm from "./TodoForm";
 
 import "../css/style.css";
 
-interface Item {
-  id: number;
-  text: string;
-  completed: boolean;
-}
 
 interface State {
   todos: Item[];

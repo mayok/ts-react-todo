@@ -1,11 +1,7 @@
+import { Item } from "./Item";
+
 import * as React from "react";
 import Todo from "./Todo";
-
-interface Item {
-  id: number;
-  text: string;
-  completed: boolean;
-}
 
 interface Props {
   todos: Item[];

@@ -1,10 +1,6 @@
-import * as React from "react";
+import { Item } from "./Item";
 
-interface Item {
-  id: number;
-  text: string;
-  completed: boolean;
-}
+import * as React from "react";
 
 interface Props {
   id: number;
