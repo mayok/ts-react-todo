@@ -16,15 +16,39 @@ export default class Todos extends React.Component<Props, {}> {
   render() {
     return (
       <div>
-        {this.props.todos.map((todo: Item) => (
-          <Todo
-            key={todo.id}
-            id={todo.id}
-            text={todo.text}
-            status={todo.completed}
-            toggleStatus={this.props.toggleStatus}
-          />
-        ))}
+        <div className="todo">
+          {this.props.todos
+            .filter((todo: Item) => todo.status === "Todo")
+            .map((todo: Item) => (
+              <Todo
+                key={todo.id}
+                todo={todo}
+                toggleStatus={this.props.toggleStatus}
+              />
+            ))}
+        </div>
+        <div className="Doing">
+          {this.props.todos
+            .filter((todo: Item) => todo.status === "Doing")
+            .map((todo: Item) => (
+              <Todo
+                key={todo.id}
+                todo={todo}
+                toggleStatus={this.props.toggleStatus}
+              />
+            ))}
+        </div>
+        <div className="Done">
+          {this.props.todos
+            .filter((todo: Item) => todo.status === "Done")
+            .map((todo: Item) => (
+              <Todo
+                key={todo.id}
+                todo={todo}
+                toggleStatus={this.props.toggleStatus}
+              />
+            ))}
+        </div>
       </div>
     );
   }

@@ -6,7 +6,6 @@ import TodoForm from "./TodoForm";
 
 import "../css/style.css";
 
-
 interface State {
   todos: Item[];
 }
@@ -19,6 +18,7 @@ export default class App extends React.Component<{}, State> {
         {
           id: 0,
           text: "text",
+          status: "Todo",
           completed: false
         }
       ]

@@ -3,9 +3,7 @@ import { Item } from "./Item";
 import * as React from "react";
 
 interface Props {
-  id: number;
-  text: string;
-  status: boolean;
+  todo: Item;
   toggleStatus: (e: Item) => void;
 }
 
@@ -18,24 +16,25 @@ class Todo extends React.Component<Props, {}> {
 
   handleClick() {
     this.props.toggleStatus({
-      id: this.props.id,
-      text: this.props.text,
-      completed: !this.props.status
+      id: this.props.todo.id,
+      text: this.props.todo.text,
+      status: "Done",
+      completed: !this.props.todo.completed
     });
   }
 
   render() {
-    const { text, status }: Props = this.props;
+    const { todo }: Props = this.props;
 
     return (
       <div>
         <input
           type="checkbox"
-          checked={status}
+          checked={todo.completed}
           onClick={this.handleClick}
           readOnly={true}
         />
-        <span className={status ? "complete" : ""}>{text}</span>
+        <span className={todo.completed ? "complete" : ""}>{todo.text}</span>
       </div>
     );
   }

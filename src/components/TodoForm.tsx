@@ -28,6 +28,7 @@ class TodoForm extends React.Component<Props, State> {
     this.props.addTodo({
       id: this.state.count,
       text: this.state.input,
+      status: "Todo",
       completed: false
     });
 
