@@ -8,48 +8,20 @@ interface Props {
   toggleStatus: (e: Item) => void;
 }
 
-export default class Todos extends React.Component<Props, {}> {
-  constructor(props: any) {
-    super(props);
-  }
+const Todos = ({ todos, toggleStatus }: Props) => {
+  return (
+    <>
+      {["Todo", "Doing", "Done"].map((status: string) => (
+        <div className={status.toLowerCase()} key={status}>
+          {todos
+            .filter((todo: Item) => todo.status === status)
+            .map((todo: Item) => (
+              <Todo key={todo.id} todo={todo} toggleStatus={toggleStatus} />
+            ))}
+        </div>
+      ))}
+    </>
+  );
+};
 
-  render() {
-    return (
-      <div>
-        <div className="todo">
-          {this.props.todos
-            .filter((todo: Item) => todo.status === "Todo")
-            .map((todo: Item) => (
-              <Todo
-                key={todo.id}
-                todo={todo}
-                toggleStatus={this.props.toggleStatus}
-              />
-            ))}
-        </div>
-        <div className="Doing">
-          {this.props.todos
-            .filter((todo: Item) => todo.status === "Doing")
-            .map((todo: Item) => (
-              <Todo
-                key={todo.id}
-                todo={todo}
-                toggleStatus={this.props.toggleStatus}
-              />
-            ))}
-        </div>
-        <div className="Done">
-          {this.props.todos
-            .filter((todo: Item) => todo.status === "Done")
-            .map((todo: Item) => (
-              <Todo
-                key={todo.id}
-                todo={todo}
-                toggleStatus={this.props.toggleStatus}
-              />
-            ))}
-        </div>
-      </div>
-    );
-  }
-}
+export default Todos;
