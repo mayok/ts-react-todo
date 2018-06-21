@@ -1,16 +1,21 @@
-import { Item } from "./Item";
-
 import * as React from "react";
+import { DragDropContext } from "react-dnd";
+import HTML5Backend from "react-dnd-html5-backend";
+import { Item } from "./Item";
 import Todos from "./Todos";
 import TodoForm from "./TodoForm";
 
 import "../css/style.css";
 
+interface monitorItem {
+  id: number;
+}
+
 interface State {
   todos: Item[];
 }
 
-export default class App extends React.Component<{}, State> {
+class App extends React.Component<{}, State> {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -25,7 +30,7 @@ export default class App extends React.Component<{}, State> {
     };
 
     this.addTodo = this.addTodo.bind(this);
-    this.toggleStatus = this.toggleStatus.bind(this);
+    this.move = this.move.bind(this);
   }
 
   addTodo(e: Item) {
@@ -34,22 +39,33 @@ export default class App extends React.Component<{}, State> {
     });
   }
 
-  toggleStatus(e: Item) {
+  move(item: monitorItem & Object, status: string) {
     this.setState({
       todos: [
-        ...this.state.todos.slice(0, e.id),
-        e,
-        ...this.state.todos.slice(e.id + 1)
+        ...this.state.todos.slice(0, item.id),
+        Object.assign({}, this.state.todos[item.id], { status: status }),
+        ...this.state.todos.slice(item.id + 1)
       ]
     });
   }
 
   render() {
     return (
-      <div>
+      <div className="board">
         <TodoForm addTodo={this.addTodo} />
-        <Todos todos={this.state.todos} toggleStatus={this.toggleStatus} />
+        {["Todo", "Doing", "Done"].map((status: string) => (
+          <Todos
+            key={status}
+            name={status}
+            todos={this.state.todos.filter(
+              (todo: Item) => todo.status === status
+            )}
+            move={this.move}
+          />
+        ))}
       </div>
     );
   }
 }
+
+export default DragDropContext(HTML5Backend)(App);

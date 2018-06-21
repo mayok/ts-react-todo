@@ -1,27 +1,48 @@
-import { Item } from "./Item";
-
 import * as React from "react";
+import { Item } from "./Item";
 import Todo from "./Todo";
+import {
+  DropTarget,
+  DropTargetConnector,
+  DropTargetMonitor,
+  ConnectDropTarget
+} from "react-dnd";
 
 interface Props {
+  name: string;
   todos: Item[];
-  toggleStatus: (e: Item) => void;
+  move: (id: Object, name: string) => void;
 }
 
-const Todos = ({ todos, toggleStatus }: Props) => {
-  return (
-    <>
-      {["Todo", "Doing", "Done"].map((status: string) => (
-        <div className={status.toLowerCase()} key={status}>
-          {todos
-            .filter((todo: Item) => todo.status === status)
-            .map((todo: Item) => (
-              <Todo key={todo.id} todo={todo} toggleStatus={toggleStatus} />
-            ))}
-        </div>
-      ))}
-    </>
+interface InjectedProps {
+  connectDropTarget?: ConnectDropTarget;
+  isOver?: boolean;
+}
+
+type ResultProps = Props & InjectedProps;
+
+const todoTarget = {
+  drop(props: ResultProps, monitor: DropTargetMonitor) {
+    props.move(monitor.getItem(), props.name);
+  }
+};
+
+function collect(connect: DropTargetConnector, monitor: DropTargetMonitor) {
+  return {
+    connectDropTarget: connect.dropTarget(),
+    isOver: monitor.isOver()
+  };
+}
+
+const Todos = ({ name, todos, connectDropTarget, isOver }: ResultProps) => {
+  return connectDropTarget(
+    <div className={`${name} field`}>
+      <h2>{name}</h2>
+      <div className="todos">
+        {todos.map((todo: Item) => <Todo key={todo.id} todo={todo} />)}
+      </div>
+    </div>
   );
 };
 
-export default Todos;
+export default DropTarget("item", todoTarget, collect)(Todos);
