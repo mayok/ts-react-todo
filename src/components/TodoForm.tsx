@@ -46,7 +46,7 @@ class TodoForm extends React.Component<Props, State> {
 
   render() {
     return (
-      <div>
+      <div className="textbox">
         <input
           type="text"
           placeholder="things what should I do"

@@ -43,7 +43,7 @@ class Todo extends React.Component<ResultProps, {}> {
     const { todo, connectDragSource, isDragging }: ResultProps = this.props;
 
     return connectDragSource(
-      <div style={{ opacity: isDragging ? 0.5 : 1 }}>
+      <div className="item" style={{ opacity: isDragging ? 0.5 : 1 }}>
         <input type="checkbox" checked={todo.completed} readOnly={true} />
         <span className={todo.completed ? "complete" : ""}>{todo.text}</span>
       </div>
