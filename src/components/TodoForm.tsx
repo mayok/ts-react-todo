@@ -25,17 +25,21 @@ class TodoForm extends React.Component<Props, State> {
   }
 
   addTodo() {
-    this.props.addTodo({
-      id: this.state.count,
-      text: this.state.input,
-      status: "Todo",
-      completed: false
-    });
-
-    this.setState({
-      input: "",
-      count: this.state.count + 1
-    });
+    if (this.state.input.length > 0) {
+      this.props.addTodo({
+        id: this.state.count,
+        text: this.state.input,
+        status: "Todo",
+        completed: false
+      });
+      this.setState({
+        input: "",
+        count: this.state.count + 1
+      });
+    } else {
+      // setinterval (async sleep), toggle class
+      // show warning message
+    }
   }
 
   handleChange(e: React.FormEvent<HTMLInputElement>): void {
