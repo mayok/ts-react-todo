@@ -23,6 +23,23 @@ input:focus {
   box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);
 }
 
+.btn {
+  margin: 0 3px;
+  padding: 4px 6px;
+  width: 50px;
+  height: 36px;
+  background: #03a9f4;
+  color: white;
+  border: none;
+  outline: none;
+  box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+}
+.btn:active {
+  background: #0179f1;
+  box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.1);
+}
+
 .board {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;

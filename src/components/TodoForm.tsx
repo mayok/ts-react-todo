@@ -52,7 +52,7 @@ class TodoForm extends React.Component<Props, State> {
           value={this.state.input}
           onChange={this.handleChange}
         />
-        <button type="button" onClick={this.addTodo}>
+        <button className="btn" type="button" onClick={this.addTodo}>
           Add
         </button>
       </div>

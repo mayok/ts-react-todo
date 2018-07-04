@@ -532,7 +532,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, "* {\r\n  box-sizing: border-box;\r\n}\r\n\r\nbody {\r\n  margin: 0;\r\n  padding: 0;\r\n  height: 100%;\r\n}\r\n\r\n.complete {\r\n  text-decoration: line-through;\r\n}\r\n\r\ninput {\r\n  border: 0;\r\n  padding: 10px 20px;\r\n  border-radius: 3px;\r\n  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);\r\n}\r\ninput:focus {\r\n  outline: none;\r\n  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);\r\n}\r\n\r\n.board {\r\n  display: grid;\r\n  grid-template-columns: 1fr 1fr 1fr;\r\n  grid-template-rows: 120px 1fr;\r\n  grid-template-areas: \"header header header\";\r\n  grid-column-gap: 10px;\r\n  text-align: center;\r\n}\r\n\r\n.textbox {\r\n  grid-area: header;\r\n  align-self: center;\r\n}\r\n.field {\r\n  min-height: 80vh;\r\n}\r\n.Todo.field,\r\n.Done.field {\r\n  background: aliceblue;\r\n}\r\n.Doing.field {\r\n  background: lightsteelblue;\r\n}\r\n\r\n.item {\r\n  display: inline-block;\r\n  width: 180px;\r\n  height: 130px;\r\n  margin: 8px;\r\n  padding: 10px 12px;\r\n  text-align: left;\r\n  font-size: 1.2em;\r\n  background: #fc0;\r\n}\r\n", ""]);
+exports.push([module.i, "* {\r\n  box-sizing: border-box;\r\n}\r\n\r\nbody {\r\n  margin: 0;\r\n  padding: 0;\r\n  height: 100%;\r\n}\r\n\r\n.complete {\r\n  text-decoration: line-through;\r\n}\r\n\r\ninput {\r\n  border: 0;\r\n  padding: 10px 20px;\r\n  border-radius: 3px;\r\n  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);\r\n}\r\ninput:focus {\r\n  outline: none;\r\n  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);\r\n}\r\n\r\n.btn {\r\n  margin: 0 3px;\r\n  padding: 4px 6px;\r\n  width: 50px;\r\n  height: 36px;\r\n  background: #03a9f4;\r\n  color: white;\r\n  border: none;\r\n  outline: none;\r\n  box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.1);\r\n  border-radius: 2px;\r\n}\r\n.btn:active {\r\n  background: #0179f1;\r\n  box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.1);\r\n}\r\n\r\n.board {\r\n  display: grid;\r\n  grid-template-columns: 1fr 1fr 1fr;\r\n  grid-template-rows: 120px 1fr;\r\n  grid-template-areas: \"header header header\";\r\n  grid-column-gap: 10px;\r\n  text-align: center;\r\n}\r\n\r\n.textbox {\r\n  grid-area: header;\r\n  align-self: center;\r\n}\r\n.field {\r\n  min-height: 80vh;\r\n}\r\n.Todo.field,\r\n.Done.field {\r\n  background: aliceblue;\r\n}\r\n.Doing.field {\r\n  background: lightsteelblue;\r\n}\r\n\r\n.item {\r\n  display: inline-block;\r\n  width: 180px;\r\n  height: 130px;\r\n  margin: 8px;\r\n  padding: 10px 12px;\r\n  text-align: left;\r\n  font-size: 1.2em;\r\n  background: #fc0;\r\n}\r\n", ""]);
 
 // exports
 
@@ -29588,7 +29588,6 @@ class App extends React.Component {
                 Object.assign({ id: this.state.todos.length }, e)
             ]
         });
-        console.log(this.state.todos);
     }
     move(item, status) {
         this.setState({
@@ -29693,7 +29692,7 @@ class TodoForm extends React.Component {
     render() {
         return (React.createElement("div", { className: "textbox" },
             React.createElement("input", { type: "text", placeholder: "things what should I do", value: this.state.input, onChange: this.handleChange }),
-            React.createElement("button", { type: "button", onClick: this.addTodo }, "Add")));
+            React.createElement("button", { className: "btn", type: "button", onClick: this.addTodo }, "Add")));
     }
 }
 exports.default = TodoForm;
