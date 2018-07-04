@@ -1,13 +1,12 @@
-import { Item } from "./Item";
+import { AddTodoProps } from "./Interfaces";
 
 import * as React from "react";
 
 interface Props {
-  addTodo: (e: Item) => void;
+  addTodo: (e: AddTodoProps) => void;
 }
 
 interface State {
-  count: number;
   input: string;
 }
 
@@ -16,7 +15,6 @@ class TodoForm extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      count: 1,
       input: ""
     };
 
@@ -27,14 +25,11 @@ class TodoForm extends React.Component<Props, State> {
   addTodo() {
     if (this.state.input.length > 0) {
       this.props.addTodo({
-        id: this.state.count,
         text: this.state.input,
-        status: "Todo",
-        completed: false
+        status: "Todo"
       });
       this.setState({
-        input: "",
-        count: this.state.count + 1
+        input: ""
       });
     } else {
       // setinterval (async sleep), toggle class

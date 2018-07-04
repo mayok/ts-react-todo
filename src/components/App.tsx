@@ -1,7 +1,7 @@
 import * as React from "react";
 import { DragDropContext } from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend";
-import { Item } from "./Item";
+import { Item, AddTodoProps } from "./Interfaces";
 import Todos from "./Todos";
 import TodoForm from "./TodoForm";
 
@@ -23,8 +23,7 @@ class App extends React.Component<{}, State> {
         {
           id: 0,
           text: "text",
-          status: "Todo",
-          completed: false
+          status: "Todo"
         }
       ]
     };
@@ -33,9 +32,12 @@ class App extends React.Component<{}, State> {
     this.move = this.move.bind(this);
   }
 
-  addTodo(e: Item) {
+  addTodo(e: AddTodoProps) {
     this.setState({
-      todos: [...this.state.todos, e]
+      todos: [
+        ...this.state.todos,
+        Object.assign({ id: this.state.todos.length }, e)
+      ]
     });
   }
 
