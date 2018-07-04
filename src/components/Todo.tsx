@@ -1,4 +1,4 @@
-import { Item } from "./Item";
+import { Item } from "./Interfaces";
 
 import * as React from "react";
 import {
@@ -44,7 +44,7 @@ class Todo extends React.Component<ResultProps, {}> {
 
     return connectDragSource(
       <div className="item" style={{ opacity: isDragging ? 0.5 : 1 }}>
-        <span className={todo.completed ? "complete" : ""}>{todo.text}</span>
+        <span>{todo.text}</span>
       </div>
     );
   }
