@@ -40,6 +40,15 @@ input:focus {
   box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.1);
 }
 
+.warn {
+  visibility: visible;
+  color: #941111;
+  font-weight: bold;
+}
+.nowarn {
+  visibility: hidden;
+}
+
 .board {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;

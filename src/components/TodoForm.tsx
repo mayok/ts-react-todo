@@ -8,6 +8,7 @@ interface Props {
 
 interface State {
   input: string;
+  warn: string;
 }
 
 class TodoForm extends React.Component<Props, State> {
@@ -15,7 +16,8 @@ class TodoForm extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      input: ""
+      input: "",
+      warn: "nowarn"
     };
 
     this.addTodo = this.addTodo.bind(this);
@@ -32,8 +34,12 @@ class TodoForm extends React.Component<Props, State> {
         input: ""
       });
     } else {
-      // setinterval (async sleep), toggle class
-      // show warning message
+      this.setState({
+        warn: "warn"
+      });
+      window.setTimeout(() => {
+        this.setState({ warn: "nowarn" });
+      }, 1300);
     }
   }
 
@@ -55,6 +61,7 @@ class TodoForm extends React.Component<Props, State> {
         <button className="btn" type="button" onClick={this.addTodo}>
           Add
         </button>
+        <p className={this.state.warn}>empty is not allowed</p>
       </div>
     );
   }
